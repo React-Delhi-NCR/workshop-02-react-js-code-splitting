@@ -1,12 +1,43 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import Loadable from 'react-loadable';
+import { BrowserRouter, Route, Link } from "react-router-dom";
+import Loader from './Loader';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const H = Loadable({
+    loader: () => import(/* webpackChunkName: 'home' */ './Home'),
+    loading: Loader
+}), P = Loadable({
+    loader: () => import(/* webpackChunkName: 'profile' */ './Profile'),
+    loading: Loader
+}), S = Loadable({
+    loader: () => import(/* webpackChunkName: 'settings' */ './Settings'),
+    loading: Loader
+});
 
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+ReactDOM.render(<div>
+    <BrowserRouter>
+        <ul className="sidebar">
+            <li>
+                <Link to="/">
+                    Home
+                </Link>
+            </li>
+            <li>
+                <Link to="/profile">
+                    Profile
+                </Link>
+            </li>
+            <li>
+                <Link to="/settings">
+                    Settings
+                </Link>
+            </li>
+        </ul>
+        <div>
+            <Route exact path="/" component={H} />
+            <Route exact path="/profile" component={P} />
+            <Route exact path="/settings" component={S} />
+        </div>
+    </BrowserRouter>
+</div>, document.getElementById('app'));
