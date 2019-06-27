@@ -1,24 +1,11 @@
 import React from 'react';
-import Loadable from 'react-loadable';
 import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
 import Loader from './Loader';
 
-const Home = Loadable({
-    loader: () => import(/* webpackChunkName: 'home' */ './Home'),
-    loading: Loader
-});
-const Profile = Loadable({
-    loader: () => import(/* webpackChunkName: 'profile' */ './Profile'),
-    loading: Loader
-});
-const Messages = Loadable({
-    loader: () => import(/* webpackChunkName: 'messages' */ './Messages'),
-    loading: Loader
-});
-const Settings = Loadable({
-    loader: () => import(/* webpackChunkName: 'settings' */ './Settings'),
-    loading: Loader
-});
+const Home = React.lazy(() => import(/* webpackChunkName: 'home' */ './Home'));
+const Profile = React.lazy(() => import(/* webpackChunkName: 'profile' */ './Profile'));
+const Messages = React.lazy(() => import(/* webpackChunkName: 'messages' */ './Messages'));
+const Settings = React.lazy(() => import(/* webpackChunkName: 'settings' */ './Settings'));
 
 const Router = () => {
     return (
@@ -46,11 +33,13 @@ const Router = () => {
                 </li>
             </ul>
             <div class="content">
-                <Redirect from="/" to="/home" />
-                <Route exact path="/home" component={Home} />
-                <Route exact path="/profile" component={Profile} />
-                <Route exact path="/messages" component={Messages} />
-                <Route exact path="/settings" component={Settings} />
+                <React.Suspense fallback={Loader}>
+                    <Redirect from="/" to="/home" />
+                    <Route exact path="/home" component={Home} />
+                    <Route exact path="/profile" component={Profile} />
+                    <Route exact path="/messages" component={Messages} />
+                    <Route exact path="/settings" component={Settings} />
+                </React.Suspense>
             </div>
         </BrowserRouter>
     );
