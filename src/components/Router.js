@@ -1,6 +1,6 @@
 import React from 'react';
 import Loadable from 'react-loadable';
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
 import Loader from './Loader';
 
 const Home = Loadable({
@@ -46,6 +46,7 @@ const Router = () => {
                 </li>
             </ul>
             <div class="content">
+                <Redirect from="/" to="/home" />
                 <Route exact path="/home" component={Home} />
                 <Route exact path="/profile" component={Profile} />
                 <Route exact path="/messages" component={Messages} />
