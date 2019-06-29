@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
-import Loader from './Loader';
 
 import Home from './Home';
 import Profile from './Profile';
@@ -33,13 +32,11 @@ const Router = () => {
                 </li>
             </ul>
             <div class="content">
-                <React.Suspense fallback={Loader}>
-                    <Redirect from="/" to="/home" />
-                    <Route exact path="/home" component={Home} />
-                    <Route exact path="/profile" component={Profile} />
-                    <Route exact path="/messages" component={Messages} />
-                    <Route exact path="/settings" component={Settings} />
-                </React.Suspense>
+                <Redirect from="/" to="/home" />
+                <Route exact path="/home" component={Home} />
+                <Route exact path="/profile" component={Profile} />
+                <Route exact path="/messages" component={Messages} />
+                <Route exact path="/settings" component={Settings} />
             </div>
         </BrowserRouter>
     );
