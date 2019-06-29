@@ -1,6 +1,7 @@
 <html>
+
 <head>
-    <link rel="icon" href="./favicon.ico"/>
+    <link rel="icon" href="./favicon.ico" />
     <title>React suspense + webpack code splitting</title>
     <style>
         html,
@@ -49,6 +50,17 @@
 <body>
     <main id="app"></main>
     <script src="./build/bundle.js"></script>
+
+    <!-- Dynamic import example -->
+    <script type="module">
+        import('./index.js')
+            .then(module => {
+                console.log(module.default());
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    </script>
 </body>
 
 </html>

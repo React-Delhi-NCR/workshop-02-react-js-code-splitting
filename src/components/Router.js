@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
-
 import Home from './Home';
 import Profile from './Profile';
 import Messages from './Messages';
