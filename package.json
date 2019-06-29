@@ -4,7 +4,8 @@
   "description": "React JS Code Splitting - Why and How? workshop",
   "main": "index.js",
   "scripts": {
-    "start": "./node_modules/.bin/webpack --config ./webpack.config.js && ./node_modules/.bin/serve -s ./public"
+    "start": "./node_modules/.bin/webpack --config ./webpack.config.js && ./node_modules/.bin/serve -s ./public",
+    "watch": "./node_modules/.bin/webpack --config ./webpack.config.js --watch"
   },
   "repository": {
     "type": "git",
