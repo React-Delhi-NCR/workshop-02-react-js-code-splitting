@@ -2,10 +2,10 @@ import React from 'react';
 import { BrowserRouter, Route, Link, Redirect } from "react-router-dom";
 import Loader from './Loader';
 
-const Home = React.lazy(() => import(/* webpackChunkName: 'home' */ './Home'));
-const Profile = React.lazy(() => import(/* webpackChunkName: 'profile' */ './Profile'));
-const Messages = React.lazy(() => import(/* webpackChunkName: 'messages' */ './Messages'));
-const Settings = React.lazy(() => import(/* webpackChunkName: 'settings' */ './Settings'));
+import Home from './Home';
+import Profile from './Profile';
+import Messages from './Messages';
+import Settings from './Settings';
 
 const Router = () => {
     return (
